@@ -1,0 +1,33 @@
+<form #travelForm="ngForm" (ngSubmit)="searchTravel()">
+    <div class="form-group row">
+        <div class="col">
+            <label for="departure">From</label>
+            <select class="form-control" id="departure"
+                    required
+                    [(ngModel)]="departure" name="departure">
+                <option *ngFor="let station of stations" [value]="station.id">{{ station.name }}</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="arrival">To</label>
+            <select [(ngModel)]="arrival" class="form-control" id="arrival" name="arrival" required>
+                <option *ngFor="let station of stations" [value]="station.id">{{ station.name }}</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!travelForm.form.valid">Cerca</button>
+</form>
+
+<hr/>
+
+<h2 *ngIf="travel">Travel Details</h2>
+
+<div class="card text-white bg-info mb-3" *ngFor="let section of travel">
+    <div class="card-header">{{ section.name }}</div>
+    <div class="card-body">
+        <h5 class="card-title">Stations</h5>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-info" *ngFor="let station of section.stations">{{ station.name }}</li>
+        </ul>
+    </div>
+</div>
