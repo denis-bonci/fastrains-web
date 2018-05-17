@@ -22,19 +22,15 @@ export class TravelComponent implements OnInit {
 
   ngOnInit() {
     this.getStations();
-    this.departure = new Station();
-    this.arrival = new Station();
+    this.departure = '';
+    this.arrival = '';
   }
 
   searchTravel() {
-      console.log(this);
       this.travelService.search(this.departure, this.arrival).subscribe(travel => this.travel = travel);
   }
 
   getStations(): void {
     this.travelService.getStations().subscribe(stations => this.stations = stations);
   }
-
-    get diagnostic() { return JSON.stringify(this.departure); }
-
 }

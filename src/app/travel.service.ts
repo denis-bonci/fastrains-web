@@ -22,6 +22,6 @@ export class TravelService {
     }
 
     search(departure: string, arrival: string): Observable<Travel[]> {
-        return this.http.post(environment.apiUrl + '/travel', `{"departureId": "${departure}", "arrivalId": "${arrival}"}`, this.httpOptions)
+        return this.http.post<Travel[]>(environment.apiUrl + '/travel', `{"departureId": "${departure}", "arrivalId": "${arrival}"}`, this.httpOptions)
     }
 }
